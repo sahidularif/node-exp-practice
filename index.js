@@ -1,19 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const adminRoute = express.Router();
-const {handleReqRes} = require('./lib/handler')
+
+const adminRouter = require('./lib/adminRouter')
 app.use(express.text()) // for parsing application/json
 // app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-app.get('/about', handleReqRes);
-// subdomain 
-adminRoute.get('/dashboard', (req, res) => {
-    console.log(req.ip);
-    // console.log(req.url);
-    res.send('We are in admin dashboard!');
-});
-app.use('/admin', adminRoute);
+
+app.use('/admin', adminRouter);
 
 app.get('/user/:id', (req, res) => {
     console.log(req.params.name);
