@@ -5,7 +5,9 @@ const bodyParser = require('body-parser')
 const adminRouter = require('./lib/adminRouter')
 app.use(express.text()) // for parsing application/json
 // app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
+const config = {
+    port: 3000,
+}
 
 app.use('/admin', adminRouter);
 
@@ -22,6 +24,6 @@ app.post('/', (req, res) => {
     res.end('Welcome to home page')
 });
 
-app.listen(3000, () => {
-    console.log('Welcome to server!');
+app.listen(config.port, () => {
+    console.log(`Welcome! Server running on port: ${config.port}`);
 })
